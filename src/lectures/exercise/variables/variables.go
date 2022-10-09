@@ -28,8 +28,8 @@ func main() {
 	var favoriteColor = "green"
 	var birthYear, age = 1975, 47
 	var (
-		firstInitial = 'L'
-		lastInitial  = 'H'
+		firstInitial = "L"
+		lastInitial  = "H"
 	)
 	var ageInDays int
 
