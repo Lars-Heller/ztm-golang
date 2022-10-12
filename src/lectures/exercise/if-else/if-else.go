@@ -15,7 +15,9 @@
 
 package main
 
-import "fmt"
+import (
+	"fmt"
+)
 
 // Days of the week
 const (
@@ -47,7 +49,17 @@ func accessDenied() {
 
 func main() {
 	// The day and role. Change these to check your work.
-	today, role := Tuesday, Guest
+	today, role := Saturday, Contractor
 
-	accessGranted()
+	if role <= Manager {
+		accessGranted()
+	} else if role == Contractor && today >= Saturday {
+		accessGranted()
+	} else if role == Member && today < Saturday {
+		accessGranted()
+	} else if role == Guest && (today == Monday || today == Wednesday || today == Friday) {
+		accessGranted()
+	} else {
+		accessDenied()
+	}
 }
