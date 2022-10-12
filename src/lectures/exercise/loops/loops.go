@@ -15,4 +15,20 @@ package main
 import "fmt"
 
 func main() {
+
+	for i := 1; i <= 50; i++ {
+		out := ""
+		if i%3 == 0 {
+			out += "Fizz"
+		}
+		if i%5 == 0 {
+			out += "Buzz"
+		}
+
+		if out == "" {
+			out = fmt.Sprint(i)
+		}
+
+		fmt.Println(out)
+	}
 }
