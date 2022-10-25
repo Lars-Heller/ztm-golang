@@ -21,6 +21,53 @@ package main
 
 import "fmt"
 
-func main() {
+type Lift int
 
+const (
+	SmallLift = iota
+	StandardLift
+	LargeLift
+)
+
+func (l Lift) String() string {
+	lifts := []string{"small lift", "standard lift", "large lift"}
+	return lifts[l]
+}
+
+type Directer interface {
+	directToLift() Lift
+}
+
+type MotorCycle string
+type Car string
+type Truck string
+
+func (m MotorCycle) String() string {
+	return fmt.Sprintf("Motorcycle %s", string(m))
+}
+func (c Car) String() string {
+	return fmt.Sprintf("Car %s", string(c))
+}
+func (t Truck) String() string {
+	return fmt.Sprintf("Truck %s", string(t))
+}
+func (m MotorCycle) directToLift() Lift {
+	return SmallLift
+}
+func (c Car) directToLift() Lift {
+	return StandardLift
+}
+func (t Truck) directToLift() Lift {
+	return LargeLift
+}
+
+func directVehicles(vehicles []Directer) {
+	for _, vehicle := range vehicles {
+		fmt.Printf("%v gets to the %v\n", vehicle, vehicle.directToLift())
+	}
+}
+
+func main() {
+	vehicles := []Directer{MotorCycle("ZX-9R"), Truck("MAN"), Car("Prius")}
+	directVehicles(vehicles)
 }
